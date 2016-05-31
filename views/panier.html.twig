@@ -1,0 +1,40 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Panier{% endblock %}
+{% block content %}
+    <section id="content">
+        <details class="shoppingCart">
+            <summary>
+                <h4>Mon panier</h4>
+                <span class="arrow"></span>
+            </summary>
+            {% for panier in  paniers %}
+            <ul>
+                <li>
+                    <input hidden name="idCommandeLi" type="text" value="{{ panier.idCommandeLi }}"><span><input type="submit" value="delete" name="delete"><a href="javascript:void(0);">{{ panier.nomTel }}</a></span> <strong>{{ panier.prixTTC }}&euro;</strong>
+                </li>
+            </ul>
+            {% endfor %}
+            <p>
+                <span>Produits: <strong><!--total produits--></strong></span> <span>Total: <strong>&euro;<!--prix total--></strong></span>
+            </p>
+
+        </details>
+    </section>
+    <table id="panierTable" border="/1/">
+        <tr><td class="bl">Nom du téléphone</td>
+            <td class="bl">Quantité</td>
+            <td class="bl">Prix TTC</td>
+            <td class="tail">Action</td>
+        </tr>
+
+        {%for panier in paniers %}
+            <tr><td class="pan">{{ panier.nomTel }}</td>
+                <td class="pan">{{ panier.qte }}</td>
+                <td class="pan">{{ panier.prixTTC }}</td>
+                <td class="pan"><input type="submit" value="delete" name="delete"></td></tr>
+            <input hidden name="idCommandeLi" type="text" value="{{ panier.idCommandeLi }}">
+        {% endfor %}
+    </table>
+
+
+{% endblock %}
